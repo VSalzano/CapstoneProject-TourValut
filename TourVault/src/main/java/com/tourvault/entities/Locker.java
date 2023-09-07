@@ -3,6 +3,8 @@ package com.tourvault.entities;
 import com.tourvault.enums.StatoLocker;
 import com.tourvault.enums.TipoLocker;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -27,8 +29,10 @@ public class Locker {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name="codice_identificativo", unique=true, nullable=false)
+	private String codiceIdentificativo;
+	
 	@ManyToOne
-	@JoinColumn(name = "gruppo_locker_id")
 	private GruppoLocker gruppo;
 	
 	@Enumerated(EnumType.STRING)

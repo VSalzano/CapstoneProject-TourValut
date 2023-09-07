@@ -28,6 +28,22 @@ public class UserService {
         }
     }
     
+    public User getByEmail(String email) {
+    	if (ur.existsByEmail(email)) {
+    		return this.ur.findByEmail(email).get();
+    	} else {
+    		throw new MyAPIException(HttpStatus.BAD_REQUEST, "Utente non trovato!");
+    	}
+    }
+    
+    public User getByUsername(String username) {
+    	if (ur.existsByUsername(username)) {
+    		return this.ur.findByUsername(username).get();
+    	} else {
+    		throw new MyAPIException(HttpStatus.BAD_REQUEST, "Utente non trovato!");
+    	}
+    }
+    
     public Page<User> getUtentiPaginati(Pageable pageable) {
         return this.upr.findAll(pageable);
     }

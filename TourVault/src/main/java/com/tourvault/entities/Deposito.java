@@ -2,8 +2,11 @@ package com.tourvault.entities;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import com.tourvault.enums.StatoDeposito;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -12,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -52,5 +56,29 @@ public class Deposito {
 	private StatoDeposito stato;
 	
 	private Double prezzoAffitto;
+	
+	@Column(name="codice_prenotazione")
+	private String codicePrenotazione;
+	
+	@Column(name="tariffa_oraria")
+	private Double tariffaOraria;
+	
+    @PrePersist
+    public void generatePrenotazioneCode() {
+        this.codicePrenotazione = RandomStringUtils.randomAlphanumeric(6);
+    }
+    
+//    @PrePersist
+//    public void impostaTariffaOraria() {
+//    	if (this.locker != null) {
+//	    	if (this.locker.getTipo().equals("PICCOLO")) {
+//	    		this.setTariffaOraria(0.50);
+//	    	} else if (this.locker.getTipo().equals("MEDIO")) {
+//	    		this.setTariffaOraria(0.75);
+//	    	} else {
+//	    		this.setTariffaOraria(1.00);
+//	    	}
+//    	}
+//    }
 
 }

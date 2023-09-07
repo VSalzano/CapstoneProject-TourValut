@@ -4,6 +4,5 @@ public enum StatoLocker {
 	
 	LIBERO,
 	OCCUPATO,
-	FUORI_SERVIZIO
 
 }

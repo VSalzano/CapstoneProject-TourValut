@@ -14,11 +14,11 @@ public class LockerService {
 	@Autowired LockerRepo lr;
 	
 	//Post
-	public void salvaGruppoLocker(Locker l) {
+	public void salvaLocker(Locker l) {
 		try {
 			this.lr.save(l);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			throw new  MyAPIException(HttpStatus.INTERNAL_SERVER_ERROR, "Impossibile salvare il locker");
 		}	
 	}
 	
@@ -28,7 +28,7 @@ public class LockerService {
 	}
 	
 	//Delete
-    public boolean deleteGruppoLocker(Long id) {
+    public boolean deleteLocker(Long id) {
         if (this.lr.existsById(id)) {
             this.lr.deleteById(id);
             return true;

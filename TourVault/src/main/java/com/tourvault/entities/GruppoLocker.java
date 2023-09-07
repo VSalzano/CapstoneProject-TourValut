@@ -2,11 +2,15 @@ package com.tourvault.entities;
 
 import java.util.List;
 
+import com.tourvault.enums.StatoGruppo;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,9 +28,15 @@ public class GruppoLocker {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(unique=true, nullable=false)
+	private String nome;
+	
 	private String posizione;
 	
-	@OneToMany
+	@OneToMany(mappedBy="gruppo")
 	private List<Locker>locker;
+	
+	@Enumerated(EnumType.STRING)
+	private StatoGruppo stato;
 
 }
