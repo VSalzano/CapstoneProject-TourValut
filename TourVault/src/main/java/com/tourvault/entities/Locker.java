@@ -34,7 +34,6 @@ public class Locker {
 	private String codiceIdentificativo;
 
 	@ManyToOne
-	@JsonIgnore
 	private GruppoLocker gruppo;
 
 	@Enumerated(EnumType.STRING)
