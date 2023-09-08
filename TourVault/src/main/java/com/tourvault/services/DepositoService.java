@@ -98,6 +98,7 @@ public class DepositoService {
         }
     }
     
+    //Metodo per ritirare bagagli e terminare la prenotazione
     public void terminaDeposito(String codicePrenotazione) {
         try {
             Optional<Deposito> optionalDeposito = dr.findByCodicePrenotazione(codicePrenotazione);
