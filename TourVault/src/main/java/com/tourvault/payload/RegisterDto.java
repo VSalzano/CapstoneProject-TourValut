@@ -1,6 +1,5 @@
 package com.tourvault.payload;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +18,6 @@ public class RegisterDto {
     private String username;
     private String email;
     private String password;
-    private String partitaIva;
     private String telefono;
     private String indirizzo;
 }
