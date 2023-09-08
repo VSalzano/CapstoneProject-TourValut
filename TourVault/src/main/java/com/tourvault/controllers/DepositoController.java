@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tourvault.entities.Deposito;
@@ -58,6 +59,18 @@ public class DepositoController {
             return ResponseEntity.ok("Deposito eliminato con successo");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nessun deposito con id " + id);
+        }
+    }
+    
+    @PostMapping("/termina")
+    public ResponseEntity<String> terminaDeposito(@RequestParam String codicePrenotazione) {
+        try {
+            depositoService.terminaDeposito(codicePrenotazione);
+            return ResponseEntity.ok("Deposito terminato con successo.");
+        } catch (MyAPIException e) {
+            return ResponseEntity.status(e.getStatus()).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Si è verificato un errore interno.");
         }
     }
 }

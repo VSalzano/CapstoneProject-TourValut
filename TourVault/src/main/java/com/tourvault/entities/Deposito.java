@@ -5,6 +5,7 @@ import java.util.Date;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import com.tourvault.enums.StatoDeposito;
+import com.tourvault.enums.TipoLocker;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -63,22 +64,10 @@ public class Deposito {
 	@Column(name="tariffa_oraria")
 	private Double tariffaOraria;
 	
-    @PrePersist
-    public void generatePrenotazioneCode() {
-        this.codicePrenotazione = RandomStringUtils.randomAlphanumeric(6);
-    }
-    
-//    @PrePersist
-//    public void impostaTariffaOraria() {
-//    	if (this.locker != null) {
-//	    	if (this.locker.getTipo().equals("PICCOLO")) {
-//	    		this.setTariffaOraria(0.50);
-//	    	} else if (this.locker.getTipo().equals("MEDIO")) {
-//	    		this.setTariffaOraria(0.75);
-//	    	} else {
-//	    		this.setTariffaOraria(1.00);
-//	    	}
-//    	}
-//    }
+	@PrePersist
+	public void generatePrenotazioneCode() {
+	    this.codicePrenotazione = RandomStringUtils.randomAlphanumeric(6);
+	    
+	}
 
 }
