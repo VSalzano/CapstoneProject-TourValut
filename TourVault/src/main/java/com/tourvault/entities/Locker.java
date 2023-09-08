@@ -1,5 +1,6 @@
 package com.tourvault.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tourvault.enums.StatoLocker;
 import com.tourvault.enums.TipoLocker;
 
@@ -24,20 +25,21 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Locker {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name="codice_identificativo", unique=true, nullable=false)
+
+	@Column(name = "codice_identificativo", unique = true, nullable = false)
 	private String codiceIdentificativo;
-	
+
 	@ManyToOne
+	@JsonIgnore
 	private GruppoLocker gruppo;
-	
+
 	@Enumerated(EnumType.STRING)
 	private StatoLocker stato;
-	
+
 	@Enumerated(EnumType.STRING)
 	private TipoLocker tipo;
 
