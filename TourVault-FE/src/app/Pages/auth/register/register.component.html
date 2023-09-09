@@ -14,15 +14,16 @@
             <h1 class="h3 my-3 fw-normal text-center">Registrati qui!</h1>
 
             <input
-              type="name"
+              type="text"
               class="form-control my-2"
               name="name"
               placeholder="Inserisci nome e cognome..."
               required
+              [(ngModel)]="newUser.name"
             />
 
             <input
-              type="username"
+              type="text"
               class="form-control my-2"
               name="username"
               placeholder="Inserisci il tuo username..."
@@ -35,6 +36,7 @@
               name="email"
               placeholder="Inserisci la tua email..."
               required
+              [(ngModel)]="newUser.email"
             />
 
             <input
@@ -43,6 +45,7 @@
               name="password"
               placeholder="Inserisci password..."
               required
+              [(ngModel)]="newUser.password"
             />
 
             <input
@@ -51,6 +54,7 @@
               name="phone-number"
               placeholder="Inserisci il tuo numero di telefono..."
               required
+              [(ngModel)]="newUser.telefono"
             />
 
             <input
@@ -59,9 +63,13 @@
               name="address"
               placeholder="Inserisci il tuo indirizzo..."
               required
+              [(ngModel)]="newUser.indirizzo"
             />
 
-            <button class="w-100 btn btn-lg btn-primary btn-log my-4">
+            <button
+              class="w-100 btn btn-lg btn-primary btn-log my-4"
+              (click)="register()"
+            >
               Invia Registrazione
             </button>
           </form>
