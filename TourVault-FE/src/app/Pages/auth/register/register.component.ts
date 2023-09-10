@@ -18,13 +18,23 @@ export class RegisterComponent {
     indirizzo: '',
   };
 
-  constructor(private authSvc: AuthService, router: Router) {}
+  isLoading: boolean = false;
 
+  constructor(private authSvc: AuthService, private router: Router) {}
   register() {
-    this.authSvc.register(this.newUser).subscribe((data) => {
-      console.log(data);
-    });
+    this.isLoading = true;
+    this.authSvc.register(this.newUser).subscribe(
+      (data) => {
+        console.log('utente registrato');
+        console.log(data);
+        setTimeout(() => {
+          this.router.navigate(['/auth', 'login']);
+        }, 2000);
+      },
+      (error) => {
+        console.error('Errore durante la registrazione:', error);
+        this.isLoading = false;
+      }
+    );
   }
-
-  login() {}
 }

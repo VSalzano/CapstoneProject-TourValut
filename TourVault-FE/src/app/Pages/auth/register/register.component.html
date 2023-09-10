@@ -10,7 +10,14 @@
     <div class="col-5">
       <div class="row">
         <div class="col rounded-2 shadow">
-          <form>
+          <div *ngIf="isLoading">
+            <!-- Spinner di caricamento -->
+            <div class="text-center">
+              <h2>Registrazione avvenuta con successo!</h2>
+              <p>Verrai reindirizzato al login...</p>
+            </div>
+          </div>
+          <form *ngIf="!isLoading">
             <h1 class="h3 my-3 fw-normal text-center">Registrati qui!</h1>
 
             <input
@@ -28,6 +35,7 @@
               name="username"
               placeholder="Inserisci il tuo username..."
               required
+              [(ngModel)]="newUser.username"
             />
 
             <input
