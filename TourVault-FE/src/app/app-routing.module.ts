@@ -15,6 +15,7 @@ const routes: Routes = [
     component: AuthComponent,
     pathMatch: 'full',
   },
+  { path: 'dashboard', loadChildren: () => import('./Pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
 ];
 
 @NgModule({
