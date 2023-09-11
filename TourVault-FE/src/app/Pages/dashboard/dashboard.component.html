@@ -1,1 +1,21 @@
-<p>dashboard works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-3" *ngFor="let gruppo of gruppiLocker">
+      <div class="card">
+        <div class="card-header">{{ gruppo.nome }}</div>
+        <div class="card-body">
+          <h5 class="card-title">Posizione: {{ gruppo.posizione }}</h5>
+          <p class="card-text">Stato: {{ gruppo.stato }}</p>
+          <!-- Puoi anche utilizzare *ngFor per iterare sugli elementi nell'array locker -->
+          <ul>
+            <li *ngFor="let locker of gruppo.locker">
+              Codice Identificativo: {{ locker.codiceIdentificativo }}, Stato:
+              {{ locker.stato }}, Tipo: {{ locker.tipo }}
+            </li>
+          </ul>
+          <a href="#" class="btn btn-primary">Vai da qualche parte</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
