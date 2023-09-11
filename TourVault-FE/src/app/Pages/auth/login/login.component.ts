@@ -16,10 +16,19 @@ export class LoginComponent {
     password: '',
   };
 
+  loginErrorMsg: string = '';
+
   login() {
-    this.authSvc.login(this.user).subscribe((data) => {
-      console.log(data);
-      this.router.navigate(['/dashboard']);
-    });
+    this.authSvc.login(this.user).subscribe(
+      (data) => {
+        console.log(data);
+        this.router.navigate(['/dashboard']);
+      },
+      (error) => {
+        console.error(error);
+        this.loginErrorMsg =
+          'Dati di autenticazione errati. Login non riuscito.';
+      }
+    );
   }
 }

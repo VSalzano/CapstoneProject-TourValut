@@ -40,6 +40,9 @@
               Accedi!
             </button>
           </form>
+          <div class="alert alert-danger" *ngIf="loginErrorMsg">
+            {{ loginErrorMsg }}
+          </div>
         </div>
       </div>
     </div>
