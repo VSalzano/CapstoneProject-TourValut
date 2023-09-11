@@ -23,11 +23,8 @@ import com.tourvault.repos.RoleRepository;
 import com.tourvault.repos.UserRepository;
 import com.tourvault.security.JwtTokenProvider;
 
-
-
 @Service
 public class AuthServiceImpl implements AuthService {
-
 
     private AuthenticationManager authenticationManager;
     private UserRepository userRepository;
@@ -76,12 +73,13 @@ public class AuthServiceImpl implements AuthService {
 
         User user = new User();
         user.setName(registerDto.getName());
+        user.setLastname(registerDto.getLastname());
         user.setUsername(registerDto.getUsername());
         user.setEmail(registerDto.getEmail());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
         user.setTelefono(registerDto.getTelefono());
+        user.setCittaResidenza(registerDto.getCittaResidenza());
         user.setIndirizzo(registerDto.getIndirizzo());
-
 
         // user role default
         Set<Role> roles = new HashSet<>();

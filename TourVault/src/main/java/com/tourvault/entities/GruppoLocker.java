@@ -2,6 +2,7 @@ package com.tourvault.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tourvault.enums.StatoGruppo;
 
 import jakarta.persistence.Column;
@@ -23,19 +24,20 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GruppoLocker {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(unique=true, nullable=false)
+
+	@Column(unique = true, nullable = false)
 	private String nome;
-	
+
 	private String posizione;
-	
-	@OneToMany(mappedBy="gruppo")
-	private List<Locker>locker;
-	
+
+	@OneToMany(mappedBy = "gruppo")
+	@JsonManagedReference
+	private List<Locker> locker;
+
 	@Enumerated(EnumType.STRING)
 	private StatoGruppo stato;
 

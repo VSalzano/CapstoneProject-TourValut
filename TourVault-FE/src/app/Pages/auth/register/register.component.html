@@ -24,9 +24,18 @@
               type="text"
               class="form-control my-2"
               name="name"
-              placeholder="Inserisci nome e cognome..."
+              placeholder="Inserisci nome..."
               required
               [(ngModel)]="newUser.name"
+            />
+
+            <input
+              type="text"
+              class="form-control my-2"
+              name="lastname"
+              placeholder="Inserisci cognome..."
+              required
+              [(ngModel)]="newUser.lastname"
             />
 
             <input
@@ -63,6 +72,15 @@
               placeholder="Inserisci il tuo numero di telefono..."
               required
               [(ngModel)]="newUser.telefono"
+            />
+
+            <input
+              type="text"
+              class="form-control my-2"
+              name="citta-residenza"
+              placeholder="Inserisci città..."
+              required
+              [(ngModel)]="newUser.cittaResidenza"
             />
 
             <input

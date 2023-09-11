@@ -28,40 +28,43 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name="utenti")
+@Table(name = "utenti")
 public class User {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String name;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
+	private String lastname;
+
+	@Column(nullable = false)
 	private String username;
-	
-	@Column(nullable=false, unique=true)
+
+	@Column(nullable = false, unique = true)
 	private String email;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String password;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String telefono;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false, name = "citta_residenza")
+	private String cittaResidenza;
+
+	@Column(nullable = false)
 	private String indirizzo;
-	
-	@OneToMany(mappedBy="user")
+
+	@OneToMany(mappedBy = "user")
 	@JsonIgnore
 	private List<Deposito> depositi;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-    )
-    private Set<Role> roles = new HashSet<>();
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+	private Set<Role> roles = new HashSet<>();
 
 }

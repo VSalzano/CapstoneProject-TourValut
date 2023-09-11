@@ -11,10 +11,12 @@ import { AuthService } from 'src/app/Services/auth.service';
 export class RegisterComponent {
   newUser: IRegister = {
     name: '',
+    lastname: '',
     username: '',
     email: '',
     password: '',
     telefono: '',
+    cittaResidenza: '',
     indirizzo: '',
   };
 
