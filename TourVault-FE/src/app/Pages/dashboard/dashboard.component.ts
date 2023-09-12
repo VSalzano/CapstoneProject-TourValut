@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { GruppoLocker } from 'src/app/Models/GruppoLocker';
+import { AuthService } from 'src/app/Services/auth.service';
 import { DashboardService } from 'src/app/Services/dashboard.service';
 
 @Component({
@@ -11,7 +12,11 @@ import { DashboardService } from 'src/app/Services/dashboard.service';
 export class DashboardComponent {
   gruppiLocker: GruppoLocker[] = [];
 
-  constructor(private router: Router, private dashSvc: DashboardService) {}
+  constructor(
+    private router: Router,
+    private dashSvc: DashboardService,
+    private authSvc: AuthService
+  ) {}
 
   ngOnInit() {
     this.dashSvc.getAllGruppi().subscribe((data: any) => {

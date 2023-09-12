@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './Components/Components/navbar/navbar.component';
+import { AuthService } from './Services/auth.service';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -13,4 +14,6 @@ import { NavbarComponent } from './Components/Components/navbar/navbar.component
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private authSvc: AuthService) {}
+}

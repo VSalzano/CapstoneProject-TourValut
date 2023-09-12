@@ -63,7 +63,7 @@ export class AuthService {
       return;
     }
     const user = JSON.parse(userJson);
-    if (this.jwtHelper.isTokenExpired(user.idToken)) {
+    if (this.jwtHelper.isTokenExpired(user.accessToken)) {
       return;
     }
 
