@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { IRegister } from '../Models/iregister';
 import { ILogin } from '../Models/ilogin';
+import { Role } from '../Models/Role.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -45,6 +46,15 @@ export class AuthService {
           localStorage.setItem('user', JSON.stringify(data));
         })
       );
+  }
+
+  isUserAdmin(): boolean {
+    const storageUser = JSON.parse(localStorage.getItem('user')!);
+    if (storageUser) {
+      let decodedToken = this.jwtHelper.decodeToken(storageUser.accessToken);
+      return decodedToken.role[0].roleName == Role.ADMIN;
+    }
+    return false;
   }
 
   restoreUser() {
