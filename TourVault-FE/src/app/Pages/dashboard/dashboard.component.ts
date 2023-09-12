@@ -11,6 +11,7 @@ import { DashboardService } from 'src/app/Services/dashboard.service';
 })
 export class DashboardComponent {
   gruppiLocker: GruppoLocker[] = [];
+  isElencoLockerAperto = false;
 
   constructor(
     private router: Router,
@@ -23,5 +24,25 @@ export class DashboardComponent {
       this.gruppiLocker = data;
       console.log(this.gruppiLocker);
     });
+  }
+
+  contaLockerLibero(gruppoLocker: GruppoLocker): number {
+    let count = 0;
+
+    gruppoLocker.locker.forEach((locker) => {
+      if (locker.stato === 'LIBERO') {
+        count++;
+      }
+    });
+
+    return count;
+  }
+
+  contaLockerTotali(gruppoLocker: GruppoLocker): number {
+    return gruppoLocker.locker.length;
+  }
+
+  toggleElencoLocker() {
+    this.isElencoLockerAperto = !this.isElencoLockerAperto;
   }
 }

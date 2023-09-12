@@ -1,0 +1,15 @@
+.dashcard {
+  width: 1000px;
+}
+
+/* Definisci l'animazione di collapse */
+@keyframes collapse {
+  from {
+    height: auto;
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}

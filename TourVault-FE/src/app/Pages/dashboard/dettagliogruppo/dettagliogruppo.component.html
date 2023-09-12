@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Locker nel Gruppo: {{ gruppoLocker.nome }}</h2>
+
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let locker of gruppoLocker.locker">
+      <div class="row">
+        <div class="col-md-6">
+          <p>
+            <strong>Codice Identificativo:</strong>
+            {{ locker.codiceIdentificativo }}
+          </p>
+          <p><strong>Stato:</strong> {{ locker.stato }}</p>
+          <p><strong>Tipo:</strong> {{ locker.tipo }}</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
