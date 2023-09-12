@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { GruppoLocker } from 'src/app/Models/GruppoLocker';
+import { User } from 'src/app/Models/User';
 import { AuthService } from 'src/app/Services/auth.service';
 import { DashboardService } from 'src/app/Services/dashboard.service';
 
@@ -11,7 +13,19 @@ import { DashboardService } from 'src/app/Services/dashboard.service';
 })
 export class DashboardComponent {
   gruppiLocker: GruppoLocker[] = [];
+  user: User = {
+    id: 0,
+    name: '',
+    lastname: '',
+    username: '',
+    email: '',
+    password: '',
+    telefono: '',
+    cittaResidenza: '',
+    indirizzo: '',
+  };
   isElencoLockerAperto = false;
+  jwtHelper: JwtHelperService = new JwtHelperService();
 
   constructor(
     private router: Router,

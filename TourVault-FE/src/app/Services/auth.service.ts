@@ -6,6 +6,7 @@ import { BehaviorSubject, map, tap } from 'rxjs';
 import { IRegister } from '../Models/iregister';
 import { ILogin } from '../Models/ilogin';
 import { Role } from '../Models/Role.enum';
+import { User } from '../Models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -55,6 +56,12 @@ export class AuthService {
       return decodedToken.role[0].roleName == Role.ADMIN;
     }
     return false;
+  }
+
+  getLoggedUserId(): number {
+    const storageUser = JSON.parse(localStorage.getItem('user')!);
+    let decoder = this.jwtHelper.decodeToken(storageUser.accessToken);
+    return parseInt(decoder.id);
   }
 
   restoreUser() {
