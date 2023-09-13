@@ -1,18 +1,25 @@
 <div class="container">
-  <h2>Locker nel Gruppo: {{ gruppoLocker.nome }}</h2>
+  <h2 class="text-center">Locker nel Gruppo: {{ gruppoLocker.nome }}</h2>
 
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let locker of gruppoLocker.locker">
-      <div class="row">
-        <div class="col-md-6">
-          <p>
-            <strong>Codice Identificativo:</strong>
-            {{ locker.codiceIdentificativo }}
-          </p>
-          <p><strong>Stato:</strong> {{ locker.stato }}</p>
-          <p><strong>Tipo:</strong> {{ locker.tipo }}</p>
-        </div>
-      </div>
-    </li>
-  </ul>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-7">
+      <ul class="list-group mt-5">
+        <li class="list-group-item" *ngFor="let locker of gruppoLocker.locker">
+          <div class="row justify-content-between">
+            <div class="col-md-6">
+              <p>
+                <strong>Codice Identificativo:</strong>
+                {{ locker.codiceIdentificativo }}
+              </p>
+              <p><strong>Stato:</strong> {{ locker.stato }}</p>
+              <p><strong>Tipo:</strong> {{ locker.tipo }}</p>
+            </div>
+            <div class="col-2 d-flex justify-content-center align-items-center">
+              <button class="btn btn-success">Prenota locker!</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

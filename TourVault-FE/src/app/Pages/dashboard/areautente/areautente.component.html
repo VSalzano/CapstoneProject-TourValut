@@ -1,1 +1,46 @@
-<p>areautente works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header">
+          <h5>Area Riservata</h5>
+        </div>
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted">Informazioni Utente</h6>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th scope="row">Nome</th>
+                <td>{{ user.name }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Cognome</th>
+                <td>{{ user.lastname }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Username</th>
+                <td>{{ user.username }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Email</th>
+                <td>{{ user.email }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Telefono</th>
+                <td>{{ user.telefono }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Città di Residenza</th>
+                <td>{{ user.cittaResidenza }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Indirizzo</th>
+                <td>{{ user.indirizzo }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

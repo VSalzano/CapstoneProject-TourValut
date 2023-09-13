@@ -4,6 +4,7 @@ import { GruppoLocker } from '../Models/GruppoLocker';
 import { Observable } from 'rxjs';
 import { User } from '../Models/User';
 import { AuthService } from './auth.service';
+import { Deposito } from '../Models/Deposito';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ import { AuthService } from './auth.service';
 export class DashboardService {
   gruppiEndpoint: string = 'http://localhost:8080/api/gruppi-locker';
   usersEndpoint: string = 'http://localhost:8080/api/users';
+  depositoEndpoint: string = 'http://localhost:8080/api/depositi';
 
   constructor(private http: HttpClient) {}
 
@@ -28,5 +30,9 @@ export class DashboardService {
 
   getUserByUsername(username: string): Observable<User> {
     return this.http.get<User>(`${this.usersEndpoint}/username/${username}`);
+  }
+
+  postDeposito(deposito: Partial<Deposito>) {
+    return this.http.post<Deposito>(`${this.depositoEndpoint}`, deposito);
   }
 }

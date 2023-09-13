@@ -26,5 +26,12 @@ export class AreautenteComponent {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.params.subscribe((params: any) => {
+      this.dashSvc.getUserById(params.id).subscribe((data: User) => {
+        this.user = data;
+        console.log(data);
+      });
+    });
+  }
 }
