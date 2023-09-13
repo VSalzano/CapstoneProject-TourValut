@@ -34,10 +34,27 @@ export class DashboardComponent {
   ) {}
 
   ngOnInit() {
-    this.dashSvc.getAllGruppi().subscribe((data: any) => {
-      this.gruppiLocker = data;
-      console.log(this.gruppiLocker);
-    });
+    // Recupera l'username dall'oggetto User in localStorage
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const userObject: User = JSON.parse(storedUser);
+      const username = userObject.username;
+      this.dashSvc.getUserByUsername(username).subscribe(
+        (user: User) => {
+          this.user = user;
+          console.log('Utente recuperato:', this.user);
+          this.dashSvc.getAllGruppi().subscribe((data: any) => {
+            this.gruppiLocker = data;
+            console.log('Gruppi Locker recuperati:', this.gruppiLocker);
+          });
+        },
+        (error) => {
+          console.error("Errore durante il recupero dell'utente:", error);
+        }
+      );
+    } else {
+      console.error('Nessun utente trovato in localStorage.');
+    }
   }
 
   contaLockerLibero(gruppoLocker: GruppoLocker): number {

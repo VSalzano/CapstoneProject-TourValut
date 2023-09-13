@@ -38,6 +38,16 @@ public class UserController {
         return ResponseEntity.ok(utenti);
     }
 
+    @GetMapping("username/{username}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
+        try {
+            User user = userService.getByUsername(username);
+            return ResponseEntity.ok(user);
+        } catch (MyAPIException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Utente non trovato");
+        }
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUtente(@PathVariable Long id) {
         boolean deleted = userService.deleteUtente(id);

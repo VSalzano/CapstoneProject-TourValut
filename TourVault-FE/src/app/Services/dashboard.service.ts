@@ -25,4 +25,8 @@ export class DashboardService {
   getUserById(id: number): Observable<User> {
     return this.http.get<User>(`${this.usersEndpoint}/${id}`);
   }
+
+  getUserByUsername(username: string): Observable<User> {
+    return this.http.get<User>(`${this.usersEndpoint}/username/${username}`);
+  }
 }
