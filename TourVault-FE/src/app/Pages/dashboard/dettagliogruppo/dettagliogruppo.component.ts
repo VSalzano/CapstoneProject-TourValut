@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Deposito } from 'src/app/Models/Deposito';
 import { GruppoLocker } from 'src/app/Models/GruppoLocker';
 import { DashboardService } from 'src/app/Services/dashboard.service';
 
@@ -18,7 +20,8 @@ export class DettagliogruppoComponent {
 
   constructor(
     private dashSvc: DashboardService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {

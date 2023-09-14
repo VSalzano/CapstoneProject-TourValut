@@ -34,7 +34,6 @@ export class DashboardComponent {
   ) {}
 
   ngOnInit() {
-    // Recupera l'username dall'oggetto User in localStorage
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       const userObject: User = JSON.parse(storedUser);
@@ -75,5 +74,9 @@ export class DashboardComponent {
 
   toggleElencoLocker() {
     this.isElencoLockerAperto = !this.isElencoLockerAperto;
+  }
+
+  logout() {
+    this.authSvc.logout();
   }
 }
