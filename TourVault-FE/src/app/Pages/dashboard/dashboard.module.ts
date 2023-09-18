@@ -7,6 +7,7 @@ import { NavbarComponent } from 'src/app/Components/Components/navbar/navbar.com
 import { DettagliogruppoComponent } from './dettagliogruppo/dettagliogruppo.component';
 import { AreautenteComponent } from './areautente/areautente.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,6 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     DettagliogruppoComponent,
     AreautenteComponent,
   ],
-  imports: [CommonModule, DashboardRoutingModule, NgbModalModule],
+  imports: [CommonModule, DashboardRoutingModule, NgbModalModule, FormsModule],
 })
 export class DashboardModule {}

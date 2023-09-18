@@ -1,13 +1,15 @@
+import { GruppoLocker } from './GruppoLocker';
+
 export class Locker {
-  id?: number;
+  id!: number;
   codiceIdentificativo: string;
-  gruppo: number;
+  gruppo: GruppoLocker;
   stato: string;
   tipo: string;
 
   constructor(
     codiceIdentificativo: string,
-    gruppo: number,
+    gruppo: GruppoLocker,
     stato: string,
     tipo: string
   ) {

@@ -1,5 +1,37 @@
-<div class="container">
+<div *ngIf="gruppoLocker" class="container">
   <h2 class="text-center">Locker nel Gruppo: {{ gruppoLocker.nome }}</h2>
+
+  <div class="row justify-content-center mt-3" *ngIf="togglePrenotazione">
+    <div class="col-12 col-md-7">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            Effettua Prenotazione per
+            {{ lockerPrenotazione.codiceIdentificativo }}
+          </h5>
+          <form (submit)="inviaPrenotazione()">
+            <div class="form-group">
+              <label for="descrizioneDeposito">Descrizione Deposito</label>
+              <!-- Collega la textarea a this.deposito.descrizione tramite [(ngModel)] -->
+              <textarea
+                class="form-control"
+                id="descrizioneDeposito"
+                rows="4"
+                name="descrizione"
+                placeholder="Inserisci la descrizione del deposito"
+                [(ngModel)]="descrizione"
+                name="descrizione"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">
+              Effettua Prenotazione
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="row justify-content-center">
     <div class="col-12 col-md-7">
@@ -15,7 +47,10 @@
               <p><strong>Tipo:</strong> {{ locker.tipo }}</p>
             </div>
             <div class="col-2 d-flex justify-content-center align-items-center">
-              <button class="btn btn-success">Prenota locker</button>
+              <!-- Passa l'ID del locker come attributo data-locker-id -->
+              <button class="btn btn-success" (click)="showLocker(locker.id)">
+                Prenota locker
+              </button>
             </div>
           </div>
         </li>
