@@ -22,6 +22,10 @@ export class DashboardService {
     return this.http.get(this.gruppiEndpoint);
   }
 
+  getAllDepositi() {
+    return this.http.get(this.depositoEndpoint);
+  }
+
   getGruppoById(id: number): Observable<GruppoLocker> {
     return this.http.get<GruppoLocker>(`${this.gruppiEndpoint}/${id}`);
   }

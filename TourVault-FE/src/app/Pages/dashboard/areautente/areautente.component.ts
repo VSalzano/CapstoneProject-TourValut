@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FullDeposito } from 'src/app/Models/FullDeposito';
 import { User } from 'src/app/Models/User';
 import { AuthService } from 'src/app/Services/auth.service';
 import { DashboardService } from 'src/app/Services/dashboard.service';
@@ -10,20 +11,13 @@ import { DashboardService } from 'src/app/Services/dashboard.service';
   styleUrls: ['./areautente.component.scss'],
 })
 export class AreautenteComponent {
-  user: User = {
-    name: '',
-    lastname: '',
-    username: '',
-    email: '',
-    password: '',
-    telefono: '',
-    cittaResidenza: '',
-    indirizzo: '',
-    id: 0,
-  };
+  user!: User;
+  prenotazioniUtente!: FullDeposito;
+  elencoPrenotazioni: FullDeposito[] = [];
 
   loading: boolean = false;
   mostraEditArea: boolean = false;
+  mostraTicket: boolean = false;
   accessToken: string = '';
 
   constructor(
@@ -32,16 +26,16 @@ export class AreautenteComponent {
     private authSvc: AuthService
   ) {
     this.recuperaAccessToken();
-  }
-
-  ngOnInit() {
     this.route.params.subscribe((params: any) => {
       this.dashSvc.getUserById(params.id).subscribe((data: User) => {
         this.user = data;
         console.log(data);
+        this.getDepositiUtente();
       });
     });
   }
+
+  ngOnInit() {}
 
   toggleEditArea() {
     this.mostraEditArea = !this.mostraEditArea;
@@ -80,5 +74,14 @@ export class AreautenteComponent {
 
   logout() {
     this.authSvc.logout();
+  }
+
+  getDepositiUtente() {
+    this.dashSvc.getAllDepositi().subscribe((data: any) => {
+      this.elencoPrenotazioni = data.filter(
+        (deposito: FullDeposito) => deposito.user.id === this.user.id
+      );
+      console.log('Prenotazioni recuperate:', this.elencoPrenotazioni);
+    });
   }
 }

@@ -26,7 +26,7 @@
         <div class="card-header">
           <h5>Area Riservata</h5>
         </div>
-        <div class="card-body" *ngIf="!mostraEditArea">
+        <div class="card-body" *ngIf="!mostraEditArea && !mostraTicket">
           <h6 class="card-subtitle mb-2 text-muted">Informazioni Utente</h6>
           <table class="table table-bordered">
             <tbody>
@@ -68,13 +68,16 @@
           Modifica i tuoi dati
         </button>
       </div>
+
+      <!-- Modifica dati utente -->
+
       <div *ngIf="loading" class="spinner mt-5 text-center">
         <div class="spinner-grow spinner-grow-md text-success"></div>
         <div>
           <p class="text-success fs-4"><b>Elaborazione dati in corso...</b></p>
         </div>
       </div>
-      <div class="mt-4" *ngIf="mostraEditArea && !loading">
+      <div class="mt-4" *ngIf="mostraEditArea && !loading && !mostraTicket">
         <h6 class="card-subtitle mb-2 text-muted">Modifica Dati Personali</h6>
         <form>
           <div class="form-group">
@@ -164,6 +167,35 @@
             </button>
           </div>
         </form>
+      </div>
+
+      <!-- Elenco ticket -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Descrizione</th>
+                  <th>Data e Ora Inizio</th>
+                  <th>Nome Utente</th>
+                  <th>Cognome Utente</th>
+                  <th>Codice Prenotazione</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let deposito of elencoPrenotazioni">
+                  <td>{{ deposito.descrizione }}</td>
+                  <td>{{ deposito.dataOraInizio }}</td>
+                  <td>{{ deposito.user.name }}</td>
+                  <td>{{ deposito.user.lastname }}</td>
+                  <td>{{ deposito.codicePrenotazione }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
