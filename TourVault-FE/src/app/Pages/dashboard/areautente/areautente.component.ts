@@ -7,7 +7,7 @@ import { DashboardService } from 'src/app/Services/dashboard.service';
 @Component({
   selector: 'app-areautente',
   templateUrl: './areautente.component.html',
-  styleUrls: ['./areautente.component.sass'],
+  styleUrls: ['./areautente.component.scss'],
 })
 export class AreautenteComponent {
   user: User = {
@@ -22,6 +22,7 @@ export class AreautenteComponent {
     id: 0,
   };
 
+  loading: boolean = false;
   mostraEditArea: boolean = false;
   accessToken: string = '';
 
@@ -47,19 +48,23 @@ export class AreautenteComponent {
   }
 
   updateUser() {
-    // Verifica che userId e updatedUserData siano stati inizializzati correttamente prima di effettuare la chiamata
     if (this.user.id && this.user) {
-      this.dashSvc
-        .updateUser(this.user.id, this.user, this.accessToken)
-        .subscribe(
-          (response) => {
-            console.log('Utente aggiornato con successo:', response);
-            this.toggleEditArea();
-          },
-          (error) => {
-            console.error('Errore di aggiornamento utente', error);
-          }
-        );
+      this.loading = true;
+      setTimeout(() => {
+        this.dashSvc
+          .updateUser(this.user.id, this.user, this.accessToken)
+          .subscribe(
+            (response) => {
+              console.log('Utente aggiornato con successo:', response);
+              this.loading = false;
+              this.toggleEditArea();
+            },
+            (error) => {
+              console.error('Errore di aggiornamento utente', error);
+              this.loading = false;
+            }
+          );
+      }, 2000);
     } else {
       console.warn('ID utente o dati utente non validi.');
     }

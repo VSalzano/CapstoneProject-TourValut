@@ -68,7 +68,13 @@
           Modifica i tuoi dati
         </button>
       </div>
-      <div class="mt-4" *ngIf="mostraEditArea">
+      <div *ngIf="loading" class="spinner mt-5 text-center">
+        <div class="spinner-grow spinner-grow-md text-success"></div>
+        <div>
+          <p class="text-success fs-4"><b>Elaborazione dati in corso...</b></p>
+        </div>
+      </div>
+      <div class="mt-4" *ngIf="mostraEditArea && !loading">
         <h6 class="card-subtitle mb-2 text-muted">Modifica Dati Personali</h6>
         <form>
           <div class="form-group">
