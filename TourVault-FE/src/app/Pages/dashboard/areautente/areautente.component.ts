@@ -76,6 +76,10 @@ export class AreautenteComponent {
     this.authSvc.logout();
   }
 
+  toggleTicketArea(): void {
+    this.mostraTicket = !this.mostraTicket;
+  }
+
   getDepositiUtente() {
     this.dashSvc.getAllDepositi().subscribe((data: any) => {
       this.elencoPrenotazioni = data.filter(
