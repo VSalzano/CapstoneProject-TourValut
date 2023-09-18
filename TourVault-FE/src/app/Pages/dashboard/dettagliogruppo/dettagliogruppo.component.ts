@@ -5,6 +5,7 @@ import { Deposito } from 'src/app/Models/Deposito';
 import { GruppoLocker } from 'src/app/Models/GruppoLocker';
 import { User } from 'src/app/Models/User';
 import { Locker } from 'src/app/Models/locker';
+import { AuthService } from 'src/app/Services/auth.service';
 import { DashboardService } from 'src/app/Services/dashboard.service';
 
 @Component({
@@ -29,7 +30,8 @@ export class DettagliogruppoComponent {
 
   constructor(
     private dashSvc: DashboardService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authSvc: AuthService
   ) {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
@@ -103,5 +105,9 @@ export class DettagliogruppoComponent {
 
     this.accessToken = userObject.accessToken;
     return this.accessToken;
+  }
+
+  logout() {
+    this.authSvc.logout();
   }
 }

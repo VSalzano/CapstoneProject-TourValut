@@ -74,7 +74,7 @@ export class AuthService {
       return;
     }
 
-    this.router.navigate(['/dashboard']);
+    // Rimani sulla rotta corrente invece di reindirizzare a '/dashboard'
     this.authSubject.next(user);
   }
 }

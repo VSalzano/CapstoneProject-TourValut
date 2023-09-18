@@ -1,3 +1,24 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/dashboard']">TourVault</a>
+    <div id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item me-3">
+          <button
+            class="btn btn-success"
+            [routerLink]="['/dashboard', 'areautente', user.id]"
+          >
+            Area Utente
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-danger" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div *ngIf="gruppoLocker" class="container">
   <h2 class="text-center">Locker nel Gruppo: {{ gruppoLocker.nome }}</h2>
 
@@ -12,7 +33,6 @@
           <form (submit)="inviaPrenotazione()">
             <div class="form-group">
               <label for="descrizioneDeposito">Descrizione Deposito</label>
-              <!-- Collega la textarea a this.deposito.descrizione tramite [(ngModel)] -->
               <textarea
                 class="form-control"
                 id="descrizioneDeposito"
@@ -47,7 +67,6 @@
               <p><strong>Tipo:</strong> {{ locker.tipo }}</p>
             </div>
             <div class="col-2 d-flex justify-content-center align-items-center">
-              <!-- Passa l'ID del locker come attributo data-locker-id -->
               <button class="btn btn-success" (click)="showLocker(locker.id)">
                 Prenota locker
               </button>

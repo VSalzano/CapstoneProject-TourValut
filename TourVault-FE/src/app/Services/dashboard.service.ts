@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GruppoLocker } from '../Models/GruppoLocker';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { User } from '../Models/User';
 import { AuthService } from './auth.service';
 import { Deposito } from '../Models/Deposito';
@@ -39,17 +39,37 @@ export class DashboardService {
   }
 
   postDeposito(deposito: Deposito, accessToken: string): Observable<Deposito> {
-    // Crea le intestazioni e aggiungi l'access token
     const headers = new HttpHeaders({
       Authorization: `Bearer ${accessToken}`,
     });
 
-    // Imposta le intestazioni nella richiesta HTTP
     const options = { headers: headers };
     return this.http.post<Deposito>(
       `${this.depositoEndpoint}`,
       deposito,
       options
     );
+  }
+
+  updateUser(id: number, user: any, accessToken: string): Observable<string> {
+    const url = `${this.usersEndpoint}/${id}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      }),
+    };
+
+    return this.http
+      .put<string>(url, user, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: any): Observable<string> {
+    console.error('Errore nella richiesta:', error);
+    return new Observable<string>((observer) => {
+      observer.next('Si è verificato un errore durante la richiesta.');
+      observer.complete();
+    });
   }
 }

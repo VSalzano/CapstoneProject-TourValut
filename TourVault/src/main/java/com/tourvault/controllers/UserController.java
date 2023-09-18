@@ -67,7 +67,7 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody User user) {
         try {
-            User updatedUser = userService.updateUser(id, user);
+            userService.updateUser(id, user);
             return ResponseEntity.ok("Utente aggiornato con successo");
         } catch (MyAPIException e) {
             return ResponseEntity.status(e.getStatus()).body(e.getMessage());
