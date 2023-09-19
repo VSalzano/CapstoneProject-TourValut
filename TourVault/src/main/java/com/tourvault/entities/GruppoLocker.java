@@ -32,6 +32,9 @@ public class GruppoLocker {
 	@Column(unique = true, nullable = false)
 	private String nome;
 
+	@Column(name = "url_immagine")
+	private String urlImmagine;
+
 	private String posizione;
 
 	@OneToMany(mappedBy = "gruppo")
