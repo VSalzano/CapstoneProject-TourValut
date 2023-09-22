@@ -2,24 +2,24 @@
   <div class="row d-flex justify-content-center text-center d-inline">
     <div class="col-5">
       <div class="logo mt-5 pt-5 pb-5">
-        <h3>TourVault</h3>
+        <h3 id="title">
+          <span id="tour">Tour</span><span id="vault">Vault</span>
+        </h3>
       </div>
     </div>
   </div>
-  <div class="row h-100 justify-content-center pt-5">
-    <div class="col-5">
-      <div class="row">
-        <div class="col rounded-2 shadow">
-          <div *ngIf="isLoading">
-            <!-- Spinner di caricamento -->
-            <div class="text-center">
-              <h2>Registrazione avvenuta con successo!</h2>
-              <p>Verrai reindirizzato al login...</p>
-            </div>
-          </div>
-          <form *ngIf="!isLoading">
-            <h1 class="h3 my-3 fw-normal text-center">Registrati qui!</h1>
-
+  <div class="row justify-content-center pt-5">
+    <div class="col box shadow">
+      <div *ngIf="isLoading">
+        <div class="text-center">
+          <h2>Registrazione avvenuta con successo!</h2>
+          <p>Verrai reindirizzato al login...</p>
+        </div>
+      </div>
+      <form *ngIf="!isLoading">
+        <h1 class="h3 my-3 fw-normal text-center card-text">Registrati qui!</h1>
+        <div class="row d-flex flex-column align-items-center">
+          <div class="col-12 col-md-4">
             <input
               type="text"
               class="form-control my-2"
@@ -28,7 +28,8 @@
               required
               [(ngModel)]="newUser.name"
             />
-
+          </div>
+          <div class="col-12 col-md-4">
             <input
               type="text"
               class="form-control my-2"
@@ -37,7 +38,8 @@
               required
               [(ngModel)]="newUser.lastname"
             />
-
+          </div>
+          <div class="col-12 col-md-4">
             <input
               type="text"
               class="form-control my-2"
@@ -46,7 +48,8 @@
               required
               [(ngModel)]="newUser.username"
             />
-
+          </div>
+          <div class="col-12 col-md-4">
             <input
               type="email"
               class="form-control my-2"
@@ -55,7 +58,8 @@
               required
               [(ngModel)]="newUser.email"
             />
-
+          </div>
+          <div class="col-12 col-md-4">
             <input
               type="password"
               class="form-control my-2"
@@ -64,7 +68,8 @@
               required
               [(ngModel)]="newUser.password"
             />
-
+          </div>
+          <div class="col-12 col-md-4">
             <input
               type="text"
               class="form-control my-2"
@@ -73,7 +78,8 @@
               required
               [(ngModel)]="newUser.telefono"
             />
-
+          </div>
+          <div class="col-12 col-md-4">
             <input
               type="text"
               class="form-control my-2"
@@ -82,7 +88,8 @@
               required
               [(ngModel)]="newUser.cittaResidenza"
             />
-
+          </div>
+          <div class="col-12 col-md-4">
             <input
               type="text"
               class="form-control my-2"
@@ -91,16 +98,14 @@
               required
               [(ngModel)]="newUser.indirizzo"
             />
-
-            <button
-              class="w-100 btn btn-lg btn-primary btn-log my-4"
-              (click)="register()"
-            >
-              Invia Registrazione
-            </button>
-          </form>
+          </div>
         </div>
-      </div>
+        <div class="p-3 text-center">
+          <button class="authbtn btn" (click)="register()">
+            Invia Registrazione
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
