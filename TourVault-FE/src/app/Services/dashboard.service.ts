@@ -76,4 +76,19 @@ export class DashboardService {
       observer.complete();
     });
   }
+
+  terminaDeposito(
+    codicePrenotazione: string,
+    accessToken: string
+  ): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${accessToken}`,
+    });
+
+    return this.http.post(
+      `${this.depositoEndpoint}/termina?codicePrenotazione=${codicePrenotazione}`,
+      null,
+      { headers }
+    );
+  }
 }

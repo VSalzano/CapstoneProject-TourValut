@@ -61,7 +61,7 @@ public class DepositoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nessun deposito con id " + id);
         }
     }
-    
+
     @PostMapping("/termina")
     public ResponseEntity<String> terminaDeposito(@RequestParam String codicePrenotazione) {
         try {

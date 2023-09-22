@@ -30,44 +30,44 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name="depositi")
+@Table(name = "depositi")
 public class Deposito {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "utente_id")
 	private User user;
-	
+
 	@ManyToOne
-    @JoinColumn(name = "locker_id")
-    private Locker locker;
-	
+	@JoinColumn(name = "locker_id")
+	private Locker locker;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataOraInizio;
-	
+
 	private String descrizione;
-	 
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataOraFine;
-	
+
 	@Enumerated(EnumType.STRING)
 	private StatoDeposito stato;
-	
+
 	private Double prezzoAffitto;
-	
-	@Column(name="codice_prenotazione")
+
+	@Column(name = "codice_prenotazione")
 	private String codicePrenotazione;
-	
-	@Column(name="tariffa_oraria")
+
+	@Column(name = "tariffa_oraria")
 	private Double tariffaOraria;
-	
+
 	@PrePersist
 	public void generatePrenotazioneCode() {
-	    this.codicePrenotazione = RandomStringUtils.randomAlphanumeric(6);
-	    
+		this.codicePrenotazione = RandomStringUtils.randomNumeric(6);
+
 	}
 
 }

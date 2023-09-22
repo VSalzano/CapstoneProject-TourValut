@@ -19,6 +19,8 @@ export class AreautenteComponent {
   mostraEditArea: boolean = false;
   mostraTicket: boolean = false;
   accessToken: string = '';
+  displayValue: string = '';
+  showTastierino: boolean = false;
 
   constructor(
     private dashSvc: DashboardService,
@@ -78,6 +80,9 @@ export class AreautenteComponent {
 
   toggleTicketArea(): void {
     this.mostraTicket = !this.mostraTicket;
+    if (this.showTastierino) {
+      this.showTastierino = false;
+    }
   }
 
   getDepositiUtente() {
@@ -87,5 +92,40 @@ export class AreautenteComponent {
       );
       console.log('Prenotazioni recuperate:', this.elencoPrenotazioni);
     });
+  }
+
+  addToDisplay(value: string) {
+    this.displayValue += value;
+  }
+
+  clearDisplay() {
+    this.displayValue = '';
+  }
+
+  sendData() {
+    this.dashSvc.terminaDeposito(this.displayValue, this.accessToken).subscribe(
+      (result) => {
+        if (result.success) {
+          console.log('Deposito terminato con successo!');
+        } else {
+          console.error(
+            'Errore durante la terminazione del deposito:',
+            result.errorMessage
+          );
+        }
+      },
+      (error) => {
+        console.error(
+          'Si è verificato un errore durante la chiamata al servizio:',
+          error
+        );
+      }
+    );
+
+    this.toggleTicketArea();
+  }
+
+  toggleTastierino() {
+    this.showTastierino = !this.showTastierino;
   }
 }
