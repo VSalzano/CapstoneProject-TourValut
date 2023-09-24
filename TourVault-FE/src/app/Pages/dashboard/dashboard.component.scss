@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap");
 
-.dashcard {
-  width: 1000px;
-}
-
 .navbar {
   background-color: rgb(13, 75, 145);
 }
@@ -23,7 +19,34 @@
   font-size: 3em;
 }
 
+.card-title {
+  font-family: "Tenor Sans", sans-serif;
+}
+
 .nav-btn {
   background-color: rgba(253, 157, 30, 0.945);
   color: white;
+}
+
+.nav-btn:hover {
+  background-color: rgba(173, 101, 7, 0.945);
+}
+
+.card-mainimg {
+  height: 500px;
+  width: 600px;
+}
+
+.card-header {
+  background-color: rgb(13, 75, 145);
+  color: rgba(253, 157, 30, 0.945);
+}
+
+.card-btn {
+  background-color: rgb(13, 75, 145);
+  color: white;
+}
+
+.card-btn:hover {
+  background-color: rgb(44, 75, 110);
 }
