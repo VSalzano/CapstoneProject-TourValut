@@ -11,7 +11,7 @@ import { DashboardService } from 'src/app/Services/dashboard.service';
 @Component({
   selector: 'app-dettagliogruppo',
   templateUrl: './dettagliogruppo.component.html',
-  styleUrls: ['./dettagliogruppo.component.sass'],
+  styleUrls: ['./dettagliogruppo.component.scss'],
 })
 export class DettagliogruppoComponent {
   gruppoLocker!: GruppoLocker;
