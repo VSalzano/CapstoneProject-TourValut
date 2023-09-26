@@ -107,6 +107,7 @@ export class AreautenteComponent {
       (result) => {
         if (result.success) {
           console.log('Deposito terminato con successo!');
+          window.location.reload();
         } else {
           console.error(
             'Errore durante la terminazione del deposito:',
@@ -119,6 +120,7 @@ export class AreautenteComponent {
           'Si è verificato un errore durante la chiamata al servizio:',
           error
         );
+        window.location.reload();
       }
     );
 

@@ -20,7 +20,7 @@ export class DettagliogruppoComponent {
 
   lockerPrenotazione!: Locker;
 
-  idLockerPrenotazione: number | undefined = undefined;
+  idLockerPrenotazione!: number;
 
   accessToken: string = '';
 

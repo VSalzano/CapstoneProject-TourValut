@@ -44,6 +44,7 @@ export class DashboardService {
 
   postDeposito(deposito: Deposito, accessToken: string): Observable<Deposito> {
     const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     });
 
@@ -82,6 +83,7 @@ export class DashboardService {
     accessToken: string
   ): Observable<any> {
     const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     });
 

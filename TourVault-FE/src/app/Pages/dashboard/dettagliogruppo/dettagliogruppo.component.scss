@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap");
+
 // stili nav
 .navbar {
   background-color: rgb(13, 75, 145);
@@ -34,4 +36,14 @@
 
 .page-btn:hover {
   background-color: rgb(44, 75, 110);
+}
+
+.main-container {
+  background-color: rgb(43, 94, 151);
+  border-top: 1px solid black;
+}
+
+h2 {
+  color: rgba(253, 157, 30, 0.945);
+  font-family: "Tenor Sans", sans-serif;
 }

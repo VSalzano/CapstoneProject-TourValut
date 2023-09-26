@@ -1,18 +1,25 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" *ngIf="user">
+<nav class="navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/dashboard']">TourVault</a>
-    <div id="navbarNav">
-      <ul class="navbar-nav ml-auto">
+    <div>
+      <a id="title" class="navbar-brand" [routerLink]="['/dashboard']">
+        <span id="tour">Tour</span><span id="vault">Vault</span>
+      </a>
+    </div>
+    <div id="nav-btns">
+      <ul class="navbar-nav d-flex flex-row justify-content-lg-end">
+        <li class="nav-item me-3">
+          <button class="btn nav-btn">?</button>
+        </li>
         <li class="nav-item me-3">
           <button
-            class="btn btn-success"
+            class="btn nav-btn"
             [routerLink]="['/dashboard', 'areautente', user.id]"
           >
             Area Utente
           </button>
         </li>
         <li class="nav-item">
-          <button class="btn btn-danger" (click)="logout()">Logout</button>
+          <button class="btn nav-btn" (click)="logout()">Logout</button>
         </li>
       </ul>
     </div>
@@ -64,14 +71,14 @@
       </div>
       <div class="text-center mt-3 d-flex justify-content-around">
         <button
-          class="btn btn-primary"
+          class="btn blue-btn px-5"
           (click)="toggleTicketArea()"
           *ngIf="!mostraEditArea"
         >
-          I tuoi ticket prenotazione
+          I tuoi ticket
         </button>
         <button
-          class="btn btn-success"
+          class="btn orange-btn"
           (click)="toggleEditArea()"
           *ngIf="!mostraTicket"
         >
@@ -82,9 +89,9 @@
       <!-- Modifica dati utente -->
 
       <div *ngIf="loading" class="spinner mt-5 text-center">
-        <div class="spinner-grow spinner-grow-md text-success"></div>
+        <div class="spinner-grow spinner-grow-md text-primary"></div>
         <div>
-          <p class="text-success fs-4"><b>Elaborazione dati in corso...</b></p>
+          <p class="text-primary fs-4"><b>Elaborazione dati in corso...</b></p>
         </div>
       </div>
       <div class="mt-4" *ngIf="mostraEditArea && !loading && !mostraTicket">
@@ -161,16 +168,12 @@
             />
           </div>
           <div class="mt-3 d-flex justify-content-around">
-            <button
-              type="submit"
-              class="btn btn-primary"
-              (click)="updateUser()"
-            >
+            <button type="submit" class="btn blue-btn" (click)="updateUser()">
               Salva Modifiche
             </button>
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn orange-btn"
               (click)="toggleEditArea()"
             >
               Annulla
@@ -192,7 +195,6 @@
                     <th>Data e Ora Inizio</th>
                     <th>Codice Prenotazione</th>
                     <th>Azioni</th>
-                    <!-- Aggiunta della colonna Azioni -->
                   </tr>
                 </thead>
                 <tbody>

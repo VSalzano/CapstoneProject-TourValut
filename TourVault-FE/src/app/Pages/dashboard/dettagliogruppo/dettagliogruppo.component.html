@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar" *ngIf="user">
   <div class="container-fluid">
     <div>
       <a id="title" class="navbar-brand" [routerLink]="['/dashboard']">
@@ -26,7 +26,7 @@
   </div>
 </nav>
 
-<div *ngIf="gruppoLocker" class="container mt-4">
+<div *ngIf="gruppoLocker" class="container-fluid main-container py-5">
   <h2 class="text-center">Locker nel Gruppo: {{ gruppoLocker.nome }}</h2>
   <div class="row justify-content-center mt-3" *ngIf="togglePrenotazione">
     <div class="col-12 col-md-7">
