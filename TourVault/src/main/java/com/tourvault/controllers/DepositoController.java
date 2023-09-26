@@ -38,8 +38,12 @@ public class DepositoController {
 
     @PostMapping
     public ResponseEntity<String> salvaDeposito(@RequestBody Deposito deposito) {
-        depositoService.salvaDeposito(deposito);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Deposito creato con successo");
+        try {
+            depositoService.salvaDeposito(deposito);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Deposito creato con successo");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Prenotazione non riuscita");
+        }
     }
 
     @PutMapping("/{id}")

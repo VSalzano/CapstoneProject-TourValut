@@ -42,18 +42,15 @@ export class DashboardService {
     return this.http.get<Locker>(`${this.lockersEndpoint}/${id}`);
   }
 
-  postDeposito(deposito: Deposito, accessToken: string): Observable<Deposito> {
+  postDeposito(deposito: Deposito, accessToken: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     });
 
-    const options = { headers: headers };
-    return this.http.post<Deposito>(
-      `${this.depositoEndpoint}`,
-      deposito,
-      options
-    );
+    const options = { headers: headers, responseType: 'text' as 'json' }; // Imposta responseType su 'text'
+
+    return this.http.post<any>(`${this.depositoEndpoint}`, deposito, options);
   }
 
   updateUser(id: number, user: any, accessToken: string): Observable<string> {

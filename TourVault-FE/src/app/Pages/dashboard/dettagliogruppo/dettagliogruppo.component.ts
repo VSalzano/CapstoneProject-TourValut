@@ -28,6 +28,8 @@ export class DettagliogruppoComponent {
 
   descrizione: string = '';
 
+  loading: boolean = false;
+
   constructor(
     private dashSvc: DashboardService,
     private route: ActivatedRoute,
@@ -79,24 +81,30 @@ export class DettagliogruppoComponent {
   }
 
   inviaPrenotazione() {
-    let deposito: Deposito = {
-      user: this.user,
-      locker: this.lockerPrenotazione,
-      dataOraInizio: new Date().toISOString(),
-      stato: 'IN_CORSO',
-      descrizione: this.descrizione,
-    };
-    console.log(deposito);
-    this.dashSvc.postDeposito(deposito, this.accessToken).subscribe(
-      (response) => {
-        console.log(response);
-        console.log('Prenotazione inviata con successo:', response);
-      },
-      (error) => {
-        console.error("Errore durante l'invio della prenotazione:", error);
-      }
-    );
-    this.descrizione = '';
+    this.loading = true; // Mostra lo spinner
+
+    setTimeout(() => {
+      let deposito: Deposito = {
+        user: this.user,
+        locker: this.lockerPrenotazione,
+        dataOraInizio: new Date().toISOString(),
+        stato: 'IN_CORSO',
+        descrizione: this.descrizione,
+      };
+      console.log(deposito);
+
+      this.dashSvc.postDeposito(deposito, this.accessToken).subscribe(
+        (response) => {
+          console.log('Risposta dal server:', response);
+          this.descrizione = '';
+          this.loading = false;
+        },
+        (error) => {
+          console.error("Errore durante l'invio della prenotazione", error);
+          this.loading = false;
+        }
+      );
+    }, 2000);
   }
 
   recuperaAccessToken(): string {
