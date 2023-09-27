@@ -17,6 +17,8 @@ import com.tourvault.exceptions.MyAPIException;
 import com.tourvault.repos.DepositoRepo;
 import com.tourvault.repos.LockerRepo;
 
+import jakarta.persistence.criteria.CriteriaBuilder.In;
+
 @Service
 public class DepositoService {
 
@@ -115,12 +117,16 @@ public class DepositoService {
                     Date dataOraFine = deposito.getDataOraFine();
                     long millisecondiTrascorsi = dataOraFine.getTime() - dataOraInizio.getTime();
 
-                    // Calcola il costo delle frazioni di ora in centesimi di euro
+                    // Calcola il tempo trascorso in minuti
                     long minutiTrascorsi = millisecondiTrascorsi / (60 * 1000);
-                    double costoFrazioniOra = (double) minutiTrascorsi * tariffaOraria / 60.0;
 
-                    // Calcola il prezzo totale dell'affitto in euro
-                    double prezzoAffitto = tariffaOraria + costoFrazioniOra / 100.0;
+                    // Calcola le ore e le frazioni di ora
+                    int ore = (int) (minutiTrascorsi / 60);
+                    int frazioniOra = (int) (minutiTrascorsi % 60);
+
+                    // Calcola il prezzo dell'affitto basato sulle ore e le frazioni di ora
+                    double prezzoAffitto = Math.max(tariffaOraria,
+                            (tariffaOraria * ore + (tariffaOraria * frazioniOra / 60.0)));
 
                     deposito.setPrezzoAffitto(prezzoAffitto);
                     deposito.setStato(StatoDeposito.TERMINATO);
@@ -131,10 +137,11 @@ public class DepositoService {
                     throw new MyAPIException(HttpStatus.BAD_REQUEST, "Il deposito non è in corso");
                 }
             } else {
-                throw new MyAPIException(HttpStatus.BAD_REQUEST, "Deposito non trovato");
+                throw new MyAPIException(HttpStatus.NOT_FOUND, "Deposito non trovato");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
 }
