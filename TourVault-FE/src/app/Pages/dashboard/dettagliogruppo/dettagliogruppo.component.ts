@@ -81,7 +81,7 @@ export class DettagliogruppoComponent {
   }
 
   inviaPrenotazione() {
-    this.loading = true; // Mostra lo spinner
+    this.loading = true;
 
     setTimeout(() => {
       let deposito: Deposito = {

@@ -120,7 +120,7 @@ export class AreautenteComponent {
           'Si è verificato un errore durante la chiamata al servizio:',
           error
         );
-        window.location.reload();
+        // window.location.reload();
       }
     );
 

@@ -1,5 +1,6 @@
 package com.tourvault.services;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -113,8 +114,14 @@ public class DepositoService {
                     Date dataOraInizio = deposito.getDataOraInizio();
                     Date dataOraFine = deposito.getDataOraFine();
                     long millisecondiTrascorsi = dataOraFine.getTime() - dataOraInizio.getTime();
-                    Double oreTrascorse = (millisecondiTrascorsi / (60.0 * 60.0 * 1000.0));
-                    double prezzoAffitto = tariffaOraria * oreTrascorse;
+
+                    // Calcola il costo delle frazioni di ora in centesimi di euro
+                    long minutiTrascorsi = millisecondiTrascorsi / (60 * 1000);
+                    double costoFrazioniOra = (double) minutiTrascorsi * tariffaOraria / 60.0;
+
+                    // Calcola il prezzo totale dell'affitto in euro
+                    double prezzoAffitto = tariffaOraria + costoFrazioniOra / 100.0;
+
                     deposito.setPrezzoAffitto(prezzoAffitto);
                     deposito.setStato(StatoDeposito.TERMINATO);
                     locker.setStato(StatoLocker.LIBERO);
@@ -130,5 +137,4 @@ public class DepositoService {
             System.out.println(e.getMessage());
         }
     }
-
 }
