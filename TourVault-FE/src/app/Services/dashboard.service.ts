@@ -78,16 +78,16 @@ export class DashboardService {
   terminaDeposito(
     codicePrenotazione: string,
     accessToken: string
-  ): Observable<any> {
+  ): Observable<string> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     });
 
-    return this.http.post(
+    return this.http.post<string>(
       `${this.depositoEndpoint}/termina?codicePrenotazione=${codicePrenotazione}`,
       null,
-      { headers }
+      { headers, responseType: 'text' as 'json' }
     );
   }
 }

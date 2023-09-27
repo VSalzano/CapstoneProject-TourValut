@@ -104,15 +104,14 @@ export class AreautenteComponent {
 
   sendData() {
     this.dashSvc.terminaDeposito(this.displayValue, this.accessToken).subscribe(
-      (result) => {
-        if (result.success) {
+      (result: string) => {
+        console.log('Risposta dal server:', result);
+
+        if (result.includes('Deposito terminato con successo')) {
           console.log('Deposito terminato con successo!');
           window.location.reload();
         } else {
-          console.error(
-            'Errore durante la terminazione del deposito:',
-            result.errorMessage
-          );
+          console.error('Errore durante la terminazione del deposito:', result);
         }
       },
       (error) => {
@@ -120,7 +119,6 @@ export class AreautenteComponent {
           'Si è verificato un errore durante la chiamata al servizio:',
           error
         );
-        // window.location.reload();
       }
     );
 
