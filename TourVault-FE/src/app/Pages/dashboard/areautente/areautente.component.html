@@ -33,7 +33,10 @@
         <div class="card-header">
           <h5>Area Riservata</h5>
         </div>
-        <div class="card-body" *ngIf="!mostraEditArea && !mostraTicket">
+        <div
+          class="card-body"
+          *ngIf="!mostraEditArea && !mostraTicket && !mostraStorico"
+        >
           <h6 class="card-subtitle mb-2 text-muted">Informazioni Utente</h6>
           <table class="table table-bordered">
             <tbody>
@@ -71,16 +74,23 @@
       </div>
       <div class="text-center mt-3 d-flex justify-content-around">
         <button
-          class="btn blue-btn px-5"
+          class="btn blue-btn px-5 me-2"
           (click)="toggleTicketArea()"
-          *ngIf="!mostraEditArea"
+          *ngIf="!mostraEditArea && !mostraStorico"
         >
           I tuoi ticket
         </button>
         <button
+          class="btn blue-btn me-2"
+          *ngIf="!mostraTicket && !mostraEditArea"
+          (click)="toggleStorico()"
+        >
+          Storico prenotazioni
+        </button>
+        <button
           class="btn orange-btn"
           (click)="toggleEditArea()"
-          *ngIf="!mostraTicket"
+          *ngIf="!mostraTicket && !mostraStorico && !mostraEditArea"
         >
           Modifica i tuoi dati
         </button>
@@ -94,7 +104,10 @@
           <p class="text-primary fs-4"><b>Elaborazione dati in corso...</b></p>
         </div>
       </div>
-      <div class="mt-4" *ngIf="mostraEditArea && !loading && !mostraTicket">
+      <div
+        class="mt-4"
+        *ngIf="mostraEditArea && !loading && !mostraTicket && !mostraStorico"
+      >
         <h6 class="card-subtitle mb-2 text-muted">Modifica Dati Personali</h6>
         <form>
           <div class="form-group">
@@ -213,6 +226,37 @@
                           Ritira bagaglio
                         </button>
                       </td>
+                    </ng-container>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Storico prenotazioni -->
+
+      <div class="container mt-5" *ngIf="mostraStorico">
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>Descrizione</th>
+                    <th>Data e Ora Inizio</th>
+                    <th>Prezzo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let deposito of elencoPrenotazioni">
+                    <ng-container *ngIf="deposito.stato === 'TERMINATO'">
+                      <td>{{ deposito.descrizione }}</td>
+                      <td>
+                        {{ deposito.dataOraInizio | date : "dd/MM/yyyy HH:mm" }}
+                      </td>
+                      <td>{{ deposito.prezzoAffitto }}</td>
                     </ng-container>
                   </tr>
                 </tbody>

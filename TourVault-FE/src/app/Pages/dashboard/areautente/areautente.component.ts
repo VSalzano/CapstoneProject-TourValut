@@ -18,6 +18,7 @@ export class AreautenteComponent {
   loading: boolean = false;
   mostraEditArea: boolean = false;
   mostraTicket: boolean = false;
+  mostraStorico: boolean = false;
   accessToken: string = '';
   displayValue: string = '';
   showTastierino: boolean = false;
@@ -127,5 +128,9 @@ export class AreautenteComponent {
 
   toggleTastierino() {
     this.showTastierino = !this.showTastierino;
+  }
+
+  toggleStorico() {
+    this.mostraStorico = !this.mostraStorico;
   }
 }

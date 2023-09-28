@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Deposito } from 'src/app/Models/Deposito';
 import { GruppoLocker } from 'src/app/Models/GruppoLocker';
@@ -33,7 +33,8 @@ export class DettagliogruppoComponent {
   constructor(
     private dashSvc: DashboardService,
     private route: ActivatedRoute,
-    private authSvc: AuthService
+    private authSvc: AuthService,
+    private router: Router
   ) {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
@@ -98,6 +99,8 @@ export class DettagliogruppoComponent {
           console.log('Risposta dal server:', response);
           this.descrizione = '';
           this.loading = false;
+          this.togglePrenotazione = false;
+          this.router.navigate(['/dashboard']);
         },
         (error) => {
           console.error("Errore durante l'invio della prenotazione", error);
