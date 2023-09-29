@@ -11,9 +11,10 @@
   <div class="row justify-content-center pt-5">
     <div class="col box shadow">
       <div *ngIf="isLoading">
-        <div class="text-center">
-          <h2>Registrazione avvenuta con successo!</h2>
-          <p>Verrai reindirizzato al login...</p>
+        <div class="text-center py-4">
+          <div class="spinner-grow spinner-grow-md text-white"></div>
+          <h2 class="text-white">Registrazione avvenuta con successo!</h2>
+          <p class="text-white">Verrai reindirizzato al login...</p>
         </div>
       </div>
       <form *ngIf="!isLoading">

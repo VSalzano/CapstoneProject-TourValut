@@ -39,6 +39,13 @@
         <div class="p-3 text-center">
           <button class="btn authbtn" (click)="login()">Accedi!</button>
         </div>
+        <div class="text-center">
+          <a
+            class="btn btn-link text-white"
+            [routerLink]="['/auth', 'register']"
+            >Non hai un account? Registrati qui!</a
+          >
+        </div>
       </form>
       <div class="alert alert-danger" *ngIf="loginErrorMsg">
         {{ loginErrorMsg }}

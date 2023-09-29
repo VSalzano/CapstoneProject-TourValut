@@ -245,7 +245,7 @@
                 <thead>
                   <tr>
                     <th>Descrizione</th>
-                    <th>Data e Ora Inizio</th>
+                    <th>Termine prenotazione</th>
                     <th>Prezzo</th>
                   </tr>
                 </thead>
@@ -254,9 +254,9 @@
                     <ng-container *ngIf="deposito.stato === 'TERMINATO'">
                       <td>{{ deposito.descrizione }}</td>
                       <td>
-                        {{ deposito.dataOraInizio | date : "dd/MM/yyyy HH:mm" }}
+                        {{ deposito.dataOraFine | date : "dd/MM/yyyy HH:mm" }}
                       </td>
-                      <td>{{ deposito.prezzoAffitto }}</td>
+                      <td>{{ deposito.prezzoAffitto | number : "1.2-2" }}</td>
                     </ng-container>
                   </tr>
                 </tbody>
